@@ -243,7 +243,8 @@ def forbidden(_):
 def not_found(_):
     return render_template("error.html", message="Страница или заявка не найдена."), 404
 
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+init_db()
+
 if __name__ == "__main__":
-    os.makedirs(UPLOAD_DIR, exist_ok=True)
-    init_db()
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=False)
