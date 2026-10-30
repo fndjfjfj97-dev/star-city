@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}Регистрация — Star City{% endblock %}
+{% block content %}<div class="form-card narrow"><p class="eyebrow">КЛИЕНТСКИЙ КАБИНЕТ</p><h1>Создать аккаунт</h1><form method="post">
+<label>Ваше имя<input name="name" required placeholder="Например, Андрей"></label>
+<label>Email<input name="email" type="email" required placeholder="you@example.com"></label>
+<label>Пароль<input name="password" type="password" minlength="8" required placeholder="Минимум 8 символов"></label>
+<button class="button full">Зарегистрироваться</button></form><p class="muted">Уже есть аккаунт? <a href="{{ url_for('login') }}">Войти</a></p></div>{% endblock %}

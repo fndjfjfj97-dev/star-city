@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block title %}Мои заявки — Star City{% endblock %}
+{% block content %}<div class="page-heading"><div><p class="eyebrow">ЛИЧНЫЙ КАБИНЕТ</p><h1>Здравствуйте, {{ me.name }}!</h1><p class="muted">Оставьте заявку — наш специалист поможет с выбором квартиры.</p></div></div>
+<div class="dashboard-grid"><section class="form-card"><h2>Новая заявка</h2><form method="post" action="{{ url_for('new_request') }}">
+<label>Услуга<select name="service" required><option value="">Выберите услугу</option><option>Квартира без ремонта</option><option>Квартира с ремонтом</option></select></label>
+<label>Телефон для связи<input name="phone" required placeholder="+373 / +380 ..."></label>
+<label>Комментарий<textarea name="details" rows="4" placeholder="Количество комнат, этаж, пожелания..."></textarea></label>
+<button class="button full">Отправить заявку</button></form></section>
+<section><h2>Мои заявки</h2>{% if requests %}<div class="request-list">{% for r in requests %}
+<article class="request-card"><div class="request-top"><b>Заявка #{{ r.id }}</b><span class="status">{{ r.status }}</span></div><h3>{{ r.service }}</h3><p class="muted">{{ r.created_at }} · {{ r.phone }}</p>{% if r.details %}<p>{{ r.details }}</p>{% endif %}
+{% if r.worker_id %}<p class="muted">Специалист: {{ r.worker_name }}</p><a class="button small" href="{{ url_for('chat', req_id=r.id) }}">Открыть чат</a>{% else %}<p class="muted">Чат откроется после принятия заявки сотрудником.</p>{% endif %}</article>{% endfor %}</div>{% else %}<div class="empty">Пока заявок нет. Создайте первую слева.</div>{% endif %}</section></div>{% endblock %}

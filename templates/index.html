@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block title %}Star City — квартиры{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy"><p class="eyebrow">STAR CITY · ЧОРНОМОРСЬК</p><h1>Ваше новое пространство для жизни.</h1>
+  <p class="lead">Выберите квартиру, оставьте заявку и обсудите детали с нашим специалистом в личном чате.</p>
+  <div class="actions"><a class="button" href="{{ url_for('register') }}">Оставить заявку</a><a class="button secondary" href="{{ url_for('login') }}">Войти в кабинет</a></div></div>
+  <div class="hero-mark">★<span>STAR<br>CITY</span></div>
+</section>
+<h2 class="section-title">Выберите подходящий вариант</h2>
+<div class="cards">
+  <article class="service-card"><div class="number">01</div><h3>Квартира без ремонта</h3><p>Получите квартиру и создайте интерьер полностью под себя.</p><a href="{{ url_for('register') }}">Оставить заявку →</a></article>
+  <article class="service-card featured"><div class="number">02</div><h3>Квартира с ремонтом</h3><p>Обсудите готовый вариант с отделкой и подходящие решения.</p><a href="{{ url_for('register') }}">Оставить заявку →</a></article>
+</div>
+<div class="note">После отправки заявки она появится у сотрудников. Когда сотрудник примет её, в личном кабинете откроется чат для консультаций и фотографий.</div>
+{% endblock %}

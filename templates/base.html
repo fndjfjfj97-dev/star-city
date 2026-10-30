@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Star City ЖК{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='logo.png') }}" alt="Star City"><span>STAR CITY <small>ЖИЛОЙ КОМПЛЕКС</small></span></a>
+  <nav>
+    {% if me %}
+      {% if me.role == 'worker' %}<a href="{{ url_for('staff_dashboard') }}">Кабинет сотрудника</a>
+      {% else %}<a href="{{ url_for('client_dashboard') }}">Мои заявки</a>{% endif %}
+      <a class="nav-button" href="{{ url_for('logout') }}">Выйти</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Войти</a><a class="nav-button" href="{{ url_for('register') }}">Регистрация</a>
+    {% endif %}
+  </nav>
+</header>
+<main class="container">
+  {% with items = get_flashed_messages(with_categories=true) %}
+    {% for category, message in items %}<div class="alert {{ category }}">{{ message }}</div>{% endfor %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+<footer>© Star City ЖК · Информационный демонстрационный сайт</footer>
+</body></html>
